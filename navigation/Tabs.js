@@ -10,13 +10,14 @@ import { Platform } from "react-native";
 
 const Tabs = createBottomTabNavigator();
 
-const getHeaderName = route => getFocusedRouteNameFromRoute(route) || "Movies";
+const getHeaderName = (route) =>
+  getFocusedRouteNameFromRoute(route) || "Movies";
 
 export default ({ navigation, route }) => {
   useLayoutEffect(() => {
     const name = getHeaderName(route);
     navigation.setOptions({
-      title: name
+      title: name,
     });
   }, [route]);
   return (
@@ -30,7 +31,7 @@ export default ({ navigation, route }) => {
             iconName += "tv";
           } else if (route.name === "Search") {
             iconName += "search";
-          } else if (route.name === "Favourites") {
+          } else if (route.name === "Discovery") {
             iconName += "heart";
           }
           return (
@@ -40,20 +41,20 @@ export default ({ navigation, route }) => {
               size={26}
             />
           );
-        }
+        },
       })}
       tabBarOptions={{
         showLabel: false,
         style: {
           backgroundColor: "black",
-          borderTopColor: "black"
-        }
+          borderTopColor: "black",
+        },
       }}
     >
       <Tabs.Screen name="Movies" component={Movies} />
       <Tabs.Screen name="Tv" component={Tv} />
       <Tabs.Screen name="Search" component={Search} />
-      <Tabs.Screen name="Favourites" component={Favs} />
+      <Tabs.Screen name="Discovery" component={Favs} />
     </Tabs.Navigator>
   );
 };
