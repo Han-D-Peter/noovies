@@ -2,22 +2,19 @@ import React, { useLayoutEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import Movies from "../screen/Movies";
-import Tv from "../screen/Tv";
-import Search from "../screen/Search";
-import Favs from "../screen/Favs";
+import Movies from "../screens/Movies";
+import Tv from "../screens/Tv";
+import Search from "../screens/Search";
+import Favs from "../screens/Favs";
 import { Platform } from "react-native";
 
 const Tabs = createBottomTabNavigator();
 
-const getHeaderName = (route) =>
-  getFocusedRouteNameFromRoute(route) || "Movies";
-
 export default ({ navigation, route }) => {
   useLayoutEffect(() => {
-    const name = getHeaderName(route);
+    const name = getFocusedRouteNameFromRoute(route) ?? "Movies";
     navigation.setOptions({
-      title: name,
+      title: name
     });
   }, [route]);
   return (
@@ -41,18 +38,18 @@ export default ({ navigation, route }) => {
               size={26}
             />
           );
-        },
+        }
       })}
       tabBarOptions={{
         showLabel: false,
         style: {
           backgroundColor: "black",
-          borderTopColor: "black",
-        },
+          borderTopColor: "black"
+        }
       }}
     >
       <Tabs.Screen name="Movies" component={Movies} />
-      <Tabs.Screen name="Tv" component={Tv} />
+      <Tabs.Screen name="TV" component={Tv} />
       <Tabs.Screen name="Search" component={Search} />
       <Tabs.Screen name="Discovery" component={Favs} />
     </Tabs.Navigator>
