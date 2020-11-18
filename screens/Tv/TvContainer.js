@@ -12,7 +12,7 @@ export default () => {
     todayError: null,
     thisWeekError: null,
     topRatedError: null,
-    popularError: null,
+    popularError: null
   });
   const getData = async () => {
     const [today, todayError] = await tvApi.today();
@@ -28,11 +28,11 @@ export default () => {
       todayError,
       thisWeekError,
       topRatedError,
-      popularError,
+      popularError
     });
   };
   useEffect(() => {
     getData();
   }, []);
-  return <TvPresenter {...shows} />;
+  return <TvPresenter refreshFn={getData} {...shows} />;
 };
