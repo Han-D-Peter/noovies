@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import Movies from "../screens/Movies";
+import Movies from "../screens/Movies/MoviesContainer";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import Favs from "../screens/Favs";
@@ -14,7 +14,7 @@ export default ({ navigation, route }) => {
   useLayoutEffect(() => {
     const name = getFocusedRouteNameFromRoute(route) ?? "Movies";
     navigation.setOptions({
-      title: name,
+      title: name
     });
   }, [route]);
   return (
@@ -38,18 +38,18 @@ export default ({ navigation, route }) => {
               size={26}
             />
           );
-        },
+        }
       })}
       tabBarOptions={{
         showLabel: false,
         style: {
           backgroundColor: "black",
-          borderTopColor: "black",
-        },
+          borderTopColor: "black"
+        }
       }}
     >
-      <Tabs.Screen name="TV" component={Tv} />
       <Tabs.Screen name="Movies" component={Movies} />
+      <Tabs.Screen name="TV" component={Tv} />
       <Tabs.Screen name="Search" component={Search} />
       <Tabs.Screen name="Discovery" component={Favs} />
     </Tabs.Navigator>
