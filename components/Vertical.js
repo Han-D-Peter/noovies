@@ -18,10 +18,10 @@ const Title = styled.Text`
   margin: 10px 0px 5px 0px;
 `;
 
-const Vertical = ({ id, poster, title, votes }) => {
+const Vertical = ({ isTv = false, id, poster, title, votes }) => {
   const navigation = useNavigation();
   const goToDetail = () => {
-    navigation.navigate("Detail", { id, title, poster, votes });
+    navigation.navigate("Detail", { isTv, id, title, poster, votes });
   };
   return (
     <TouchableOpacity onPress={goToDetail}>
@@ -38,7 +38,7 @@ Vertical.propTypes = {
   id: PropTypes.number.isRequired,
   poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired
+  votes: PropTypes.number.isRequired,
 };
 
 export default Vertical;

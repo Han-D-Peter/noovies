@@ -10,7 +10,7 @@ export default ({ movies, shows, keyword, onChange, onSubmit }) => (
     refreshFn={onSubmit}
     loading={false}
     contentContainerStyle={{
-      paddingTop: 10
+      paddingTop: 10,
     }}
   >
     <Input
@@ -21,7 +21,7 @@ export default ({ movies, shows, keyword, onChange, onSubmit }) => (
     />
     {movies.length !== 0 && (
       <HorizontalSlider title={"Movie Results"}>
-        {movies.map(movie => (
+        {movies.map((movie) => (
           <Vertical
             key={movie.id}
             id={movie.id}
@@ -34,8 +34,9 @@ export default ({ movies, shows, keyword, onChange, onSubmit }) => (
     )}
     {shows.length !== 0 && (
       <HorizontalSlider title={"TV Results"}>
-        {shows.map(show => (
+        {shows.map((show) => (
           <Vertical
+            isTv={true}
             key={show.id}
             id={show.id}
             votes={show.vote_average}

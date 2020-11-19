@@ -38,10 +38,24 @@ const Overview = styled.Text`
   color: white;
 `;
 
-const Horizontal = ({ id, title, releaseDate, poster, overview }) => {
+const Horizontal = ({
+  isTv = false,
+  id,
+  title,
+  releaseDate,
+  poster,
+  overview,
+}) => {
   const navigation = useNavigation();
   const goToDetail = () => {
-    navigation.navigate("Detail", { id, title, poster, overview, releaseDate });
+    navigation.navigate("Detail", {
+      isTv,
+      id,
+      title,
+      poster,
+      overview,
+      releaseDate,
+    });
   };
   return (
     <TouchableOpacity onPress={goToDetail}>
@@ -64,7 +78,7 @@ Horizontal.propTypes = {
   title: PropTypes.string.isRequired,
   releaseDate: PropTypes.string,
   poster: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired
+  overview: PropTypes.string.isRequired,
 };
 
 export default Horizontal;

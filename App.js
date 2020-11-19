@@ -4,11 +4,11 @@ import * as Font from "expo-font";
 import { Image, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Asset } from "expo-asset";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import Stack from "./navigation/Stack";
 
-const cacheImages = images =>
-  images.map(image => {
+const cacheImages = (images) =>
+  images.map((image) => {
     if (typeof image === "string") {
       return Image.prefetch(image);
     } else {
@@ -16,16 +16,16 @@ const cacheImages = images =>
     }
   });
 
-const cacheFonts = fonts => fonts.map(font => Font.loadAsync(font));
+const cacheFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   const loadAssets = async () => {
     const images = cacheImages([
       "https://images.unsplash.com/photo-1584486188544-dc2e1417aff1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      require("./assets/splash.png")
+      require("./assets/splash.png"),
     ]);
-    const fonts = cacheFonts([Ionicons.font]);
+    const fonts = cacheFonts([Ionicons.font, FontAwesome.font]);
     return await Promise.all([...images, ...fonts]);
   };
   const onFinish = () => setIsReady(true);
