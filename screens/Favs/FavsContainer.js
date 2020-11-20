@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import { movieApi } from "../api";
+import React, { useState, useEffect } from "react";
+import FavsPresenter from "./FavsPresenter";
+import { movieApi } from "../../api";
 
 export default () => {
   const [movies, setMovies] = useState({
     results: [],
-    error: null,
+    error: null
   });
   const getData = async () => {
     const [results, error] = await movieApi.discover();
     setMovies({
       results,
-      error,
+      error
     });
   };
   useEffect(() => {
     getData();
   }, []);
-  return (
-    <View>
-      <Text>{movies.results.length}</Text>
-    </View>
-  );
+  return <FavsPresenter {...movies} />;
 };
